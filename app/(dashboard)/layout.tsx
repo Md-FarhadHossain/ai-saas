@@ -1,3 +1,4 @@
+import Navbar from '@/components/Navbar';
 import React from 'react'
 
 const DashboardLayout = ({children}:{children: React.ReactNode;}) => {
@@ -9,7 +10,7 @@ const DashboardLayout = ({children}:{children: React.ReactNode;}) => {
 
         {/* Main content */}
         <main className='md:pl-72'>
-            hello content
+            <Navbar />
             {children}
         </main>
     </div>
