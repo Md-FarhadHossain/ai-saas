@@ -7,6 +7,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { formSchema } from "./constants"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 
 const ConversationPage = () => {
     const form = useForm<z.infer<typeof formSchema>>({
@@ -32,7 +33,20 @@ const ConversationPage = () => {
             bgColor='bg-violet-500/10'
         />
         <div className='px-4 lg:px-8'>
+            <Form {...form}>
+                <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                >
+                    <FormField name="prompt" render={({ field }) => (
+                        <FormItem className="col-span-12 lg:col-span-10">
+                            <FormControl className="m-0 p-0">
 
+                            </FormControl>
+                        </FormItem>
+                    )}></FormField>
+                </form>
+            </Form>
         </div>
     </div>
   )
