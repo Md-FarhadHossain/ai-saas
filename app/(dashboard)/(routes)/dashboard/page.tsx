@@ -3,6 +3,7 @@ import { ArrowRight, Code, ImageIcon, MessageSquare, Music, VideoIcon } from "lu
 
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const tools = [
   {
@@ -43,6 +44,7 @@ const tools = [
 ];
 
 export default function DashboardPage() {
+  const router = useRouter()
   return (
     <div>
       <div className="space-y-4 mb-8">
@@ -61,6 +63,7 @@ export default function DashboardPage() {
         {tools.map((tool) => (
           <Card 
             key={tool.href}
+            onClick={() => router.push(tool.href)}
             className="p-4 border-black/5 flex items-center justify-between hover:shadow-md transition cursor-pointer"
           >
             <div className="flex items-center gap-x-4">
