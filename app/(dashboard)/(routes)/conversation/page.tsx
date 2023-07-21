@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from 'openai'
 import axios from "axios";
+import { Empty } from "@/components/empty";
+import { Loader } from "@/components/loader";
 
 const ConversationPage = () => {
   const router = useRouter()
@@ -89,8 +91,13 @@ const ConversationPage = () => {
 
         {/* Message content */}
         <div className="space-y-4 mt-4">
+          {isLoading && (
+            <div className="p-8 rounded-lg w-full felx items-center justify-center bg-muted">
+              <Loader />
+            </div>
+          )}
           {messages.length === 0 && !isLoading && (
-            "hello world"
+            <Empty label="No conversation started." />
           )}
             <div className="flex flex-col-reverse gap-y-4">
               {
