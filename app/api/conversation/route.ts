@@ -23,6 +23,10 @@ export async function POST (
         if (!configuration.apiKey) {
             return new NextResponse("OpenAI API key not configured", {status: 500})
         }
+
+        if (!messages) {
+            return new NextResponse("Messages are required", {status: 400})
+        }
     }
     catch (error) {
         console.log("[CONVERSATION_ERROR]", error)
