@@ -35,13 +35,13 @@ const ConversationPage = () => {
       }
       const newMessages = [...messages, userMessage]
 
-      const response = await axios.post('/api/conversation') 
+      const response = await axios.post('/api/conversation', { messages: newMessages }) 
 
       setmessages((current) => [...current, userMessage, response.data])
       form.reset()
     }
     catch (error:any) {
-      // TODO: Open pro model
+      // TODO: Open pro modal
       console.log(error)
     }
     finally {
@@ -89,7 +89,15 @@ const ConversationPage = () => {
 
         {/* Message content */}
         <div className="space-y-4 mt-4">
-            Messages content
+            <div className="flex flex-col-reverse gap-y-4">
+              {
+                messages.map((message) => (
+                  <div key={message.content}>
+                    {message.content}
+                  </div>
+                ))
+              }
+            </div>
         </div>
       </div>
     </div>
