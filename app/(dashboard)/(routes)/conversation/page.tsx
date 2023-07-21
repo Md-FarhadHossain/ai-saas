@@ -89,6 +89,9 @@ const ConversationPage = () => {
 
         {/* Message content */}
         <div className="space-y-4 mt-4">
+          {messages.length === 0 && !isLoading && (
+            "hello world"
+          )}
             <div className="flex flex-col-reverse gap-y-4">
               {
                 messages.map((message) => (
