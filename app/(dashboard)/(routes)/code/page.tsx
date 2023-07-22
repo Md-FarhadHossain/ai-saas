@@ -76,7 +76,7 @@ const CodePage = () => {
                   <FormControl className="m-0 p-0">
                     <Input
                       disabled={isLoading}
-                      placeholder="Send a message here..."
+                      placeholder="Simple toggle button using react hooks..."
                       {...field}
                       className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                     />
