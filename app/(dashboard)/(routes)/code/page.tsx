@@ -18,6 +18,7 @@ import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { UserAvater } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 const CodePage = () => {
   const router = useRouter()
@@ -107,9 +108,23 @@ const CodePage = () => {
                 messages.map((message) => (
                   <div key={message.content} className={cn('flex items-center gap-x-8 rounded-lg p-8 w-full', message.role === "user" ? "bg-white border border-black/10" : "bg-muted")}>
                     {message.role === "user" ? <UserAvater /> : <BotAvatar />}
-                    <p className="text-sm">
-                     {message.content}
-                    </p>
+                      {/* Message content */}
+                    <ReactMarkdown  
+                    className="text-sm overflow-hidden leading-7"
+                    components={{
+                      pre: ({node, ...props}) => (
+                        <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+                          <pre {...props} />
+                        </div>
+                      ),
+                      code: ({node, ...props}) => (
+                        <code {...props} className="bg-black/10 rounded-lg p-1" />
+                      )
+                    }}
+                    
+                    >
+                     {message.content || ""}
+                    </ReactMarkdown>
                   </div>
                 ))
               }
