@@ -16,6 +16,8 @@ import axios from "axios";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
+import { UserAvater } from "@/components/user-avatar";
+import { BotAvatar } from "@/components/bot-avatar";
 
 const ConversationPage = () => {
   const router = useRouter()
@@ -104,7 +106,10 @@ const ConversationPage = () => {
               {
                 messages.map((message) => (
                   <div key={message.content} className={cn('flex items-center gap-x-8 rounded-lg p-8 w-full', message.role === "user" ? "bg-white border border-black/10" : "bg-muted")}>
-                    {message.content}
+                    {message.role === "user" ? <UserAvater /> : <BotAvatar />}
+                    <p className="text-sm">
+                     {message.content}
+                    </p>
                   </div>
                 ))
               }
