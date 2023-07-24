@@ -11,7 +11,6 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { ChatCompletionRequestMessage } from 'openai'
 import axios from "axios";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
@@ -20,13 +19,15 @@ import { UserAvater } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 
 const ImagePage = () => {
-  const router = useRouter()
-  const [messages, setmessages] = useState<ChatCompletionRequestMessage[]>([])
+  const router = useRouter();
+  const [images, setImages] = useState<string[]>([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
+      amount: "1",
+      resolution: "512x512",
     },
   });
 
@@ -34,23 +35,17 @@ const ImagePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMessage: ChatCompletionRequestMessage = {
-        role: "user",
-        content: values.prompt,
-      }
-      const newMessages = [...messages, userMessage]
+      setImages([]);
 
-      const response = await axios.post('/api/conversation', { messages: newMessages }) 
+      const response = await axios.post("/api/image", values);
 
-      setmessages((current) => [...current, userMessage, response.data])
-      form.reset()
-    }
-    catch (error:any) {
+      const urls = response.data.map((image: { url: string }) => image.url);
+      form.reset();
+    } catch (error: any) {
       // TODO: Open pro modal
-      console.log(error)
-    }
-    finally {
-      router.refresh()
+      console.log(error);
+    } finally {
+      router.refresh();
     }
   };
 
@@ -86,8 +81,11 @@ const ImagePage = () => {
             />
 
             {/* Generate button */}
-            <Button className="col-span-12 lg:col-span-2 w-full" disabled={isLoading}>
-                Generate
+            <Button
+              className="col-span-12 lg:col-span-2 w-full"
+              disabled={isLoading}
+            >
+              Generate
             </Button>
           </form>
         </Form>
@@ -95,25 +93,16 @@ const ImagePage = () => {
         {/* Message content */}
         <div className="space-y-4 mt-4">
           {isLoading && (
-            <div className="p-8 rounded-lg w-full felx items-center justify-center bg-muted">
+            <div className="p-20">
               <Loader />
             </div>
           )}
-          {messages.length === 0 && !isLoading && (
+          {images.length === 0 && !isLoading && (
             <Empty label="No conversation started." />
           )}
-            <div className="flex flex-col-reverse gap-y-4">
-              {
-                messages.map((message) => (
-                  <div key={message.content} className={cn('flex items-center gap-x-8 rounded-lg p-8 w-full', message.role === "user" ? "bg-white border border-black/10" : "bg-muted")}>
-                    {message.role === "user" ? <UserAvater /> : <BotAvatar />}
-                    <p className="text-sm">
-                     {message.content}
-                    </p>
-                  </div>
-                ))
-              }
-            </div>
+
+          {/* image will be rendred here */}
+          <div>Image will be rendred here</div>
         </div>
       </div>
     </div>
