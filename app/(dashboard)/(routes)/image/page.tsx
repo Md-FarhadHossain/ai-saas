@@ -15,8 +15,8 @@ import axios from "axios";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
-import { UserAvater } from "@/components/user-avatar";
-import { BotAvatar } from "@/components/bot-avatar";
+import { Select } from "@/components/ui/select";
+
 
 const ImagePage = () => {
   const router = useRouter();
@@ -88,7 +88,9 @@ const ImagePage = () => {
               name="amount"
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-2">
-
+                  <Select>
+                    
+                  </Select>
                 </FormItem>
               )}
             />
