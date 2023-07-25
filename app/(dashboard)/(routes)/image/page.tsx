@@ -40,6 +40,8 @@ const ImagePage = () => {
       const response = await axios.post("/api/image", values);
 
       const urls = response.data.map((image: { url: string }) => image.url);
+
+      setImages(urls)
       form.reset();
     } catch (error: any) {
       // TODO: Open pro modal
@@ -71,11 +73,22 @@ const ImagePage = () => {
                   <FormControl className="m-0 p-0">
                     <Input
                       disabled={isLoading}
-                      placeholder="Send a message here..."
+                      placeholder="A picture of a horse in Swiss alps"
                       {...field}
                       className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                     />
                   </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* FormFild */}
+            <FormField
+              control={form.control}
+              name="amount"
+              render={({ field }) => (
+                <FormItem className="col-span-12 lg:col-span-2">
+
                 </FormItem>
               )}
             />
