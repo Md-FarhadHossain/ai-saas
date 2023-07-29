@@ -5,7 +5,7 @@ import Heading from "@/components/heading";
 import { ImageIcon } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { formSchema } from "./constants";
+import { amountOptions, formSchema } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,7 @@ import axios from "axios";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
-import { Select } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 
 const ImagePage = () => {
@@ -88,8 +88,24 @@ const ImagePage = () => {
               name="amount"
               render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-2">
-                  <Select>
-                    
+                  <Select
+                    disabled={isLoading}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue defaultValue={field.value} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {amountOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
                   </Select>
                 </FormItem>
               )}
