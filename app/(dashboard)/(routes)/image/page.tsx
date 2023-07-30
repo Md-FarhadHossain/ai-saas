@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import Heading from "@/components/heading";
-import { ImageIcon } from "lucide-react";
+import { Download, ImageIcon } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
@@ -16,6 +16,8 @@ import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardFooter } from "@/components/ui/card";
+import Image from "next/image";
 
 
 const ImagePage = () => {
@@ -161,7 +163,25 @@ const ImagePage = () => {
           )}
 
           {/* image will be rendred here */}
-          <div>Image will be rendred here</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mt-8">
+            {images.map((src) => (
+              <Card className="rounded-lg overflow-hidden">
+                <div className="relative aspect-square">
+                  <Image
+                    alt="iamge"
+                    fill
+                    src={src}
+                  />
+                </div>
+                <CardFooter className="p-2">
+                  <Button onClick={() => window.open(src)} variant="secondary" className="w-full">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>
