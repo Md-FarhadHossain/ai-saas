@@ -97,8 +97,8 @@ const VideoPage = () => {
           )}
             {/* Music will be generated here */}
             {video && (
-              <video>
-                
+              <video className="w-full aspect-video mt-8 rounded-lg border bg-black" controls>
+                <source src={video} />
               </video>
             )}
         </div>
