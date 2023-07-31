@@ -17,7 +17,7 @@ import { Loader } from "@/components/loader";
 
 const VideoPage = () => {
   const router = useRouter()
-  const [music, setMusic] = useState<string>()
+  const [video, setVideo] = useState<string>()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
