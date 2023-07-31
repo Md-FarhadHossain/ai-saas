@@ -11,7 +11,6 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { ChatCompletionRequestMessage } from 'openai'
 import axios from "axios";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
@@ -52,7 +51,7 @@ const MusicPage = () => {
     <div>
       <Heading
         title="Video Generation"
-        description="Turn your prompt into music"
+        description="Turn your prompt into video"
         icon={Music}
         iconColor="text-emerald-500"
         bgColor="bg-emerald-500/10"
