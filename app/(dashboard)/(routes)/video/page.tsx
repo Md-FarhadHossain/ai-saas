@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import Heading from "@/components/heading";
-import { Music } from "lucide-react";
+import { VideoIcon } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
@@ -52,7 +52,7 @@ const MusicPage = () => {
       <Heading
         title="Video Generation"
         description="Turn your prompt into video"
-        icon={Music}
+        icon={VideoIcon}
         iconColor="text-emerald-500"
         bgColor="bg-emerald-500/10"
       />
