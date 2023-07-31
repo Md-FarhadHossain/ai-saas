@@ -69,7 +69,7 @@ const MusicPage = () => {
                   <FormControl className="m-0 p-0">
                     <Input
                       disabled={isLoading}
-                      placeholder="Piano Solo"
+                      placeholder="Clown fish swimming around a coral reef"
                       {...field}
                       className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                     />
