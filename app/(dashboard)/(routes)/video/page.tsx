@@ -53,8 +53,8 @@ const MusicPage = () => {
         title="Video Generation"
         description="Turn your prompt into video"
         icon={VideoIcon}
-        iconColor="text-emerald-500"
-        bgColor="bg-emerald-500/10"
+        iconColor="text-orange-700"
+        bgColor="bg-orange-700/10"
       />
       <div className="px-4 lg:px-8">
         <Form {...form}>
