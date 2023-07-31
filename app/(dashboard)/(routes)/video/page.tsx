@@ -30,11 +30,11 @@ const VideoPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setMusic(undefined)
+      setVideo(undefined)
 
-      const response = await axios.post('/api/music', values) 
+      const response = await axios.post('/api/video', values) 
 
-      setMusic(response.data.audio)
+      setVideo(response.data[0])
 
       form.reset()
     }
@@ -92,14 +92,14 @@ const VideoPage = () => {
               <Loader />
             </div>
           )}
-          {!music && !isLoading && (
-            <Empty label="No music generated." />
+          {!video && !isLoading && (
+            <Empty label="No video generated." />
           )}
             {/* Music will be generated here */}
-            {music && (
-              <audio controls className="mt-8 w-full">
-                <source src={music} />
-              </audio>
+            {video && (
+              <video>
+                
+              </video>
             )}
         </div>
       </div>
