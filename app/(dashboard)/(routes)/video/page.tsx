@@ -15,7 +15,7 @@ import axios from "axios";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 
-const MusicPage = () => {
+const VideoPage = () => {
   const router = useRouter()
   const [music, setMusic] = useState<string>()
 
@@ -107,4 +107,4 @@ const MusicPage = () => {
   );
 };
 
-export default MusicPage;
+export default VideoPage;
