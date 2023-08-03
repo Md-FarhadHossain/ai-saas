@@ -22,11 +22,11 @@ export async function POST (
             return new NextResponse("Prompt is required", {status: 400})
         }
 
-        const output = await replicate.run(
+        const response = await replicate.run(
             "anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351",
             {
               input: {
-                prompt: "An astronaut riding a horse"
+                prompt
               }
             }
           );
@@ -34,7 +34,7 @@ export async function POST (
         return NextResponse.json(response)
     }
     catch (error) {
-        console.log("[MUSIC_ERROR]", error)
+        console.log("[VIDEO_ERROR]", error)
         return new NextResponse("Internal Error", {status: 500})
     }
 }
